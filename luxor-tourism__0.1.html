@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Luxor - Egypt's Ancient Treasures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        body.arabic {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+            direction: rtl;
+        }
+
+        header {
+            background: linear-gradient(135deg, #8B4513 0%, #D4AF37 100%);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .language-selector label {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .language-dropdown {
+            background: rgba(255,255,255,0.9);
+            border: 2px solid white;
+            color: #8B4513;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            min-width: 180px;
+        }
+
+        .language-dropdown:hover {
+            background: white;
+        }
+
+        .language-dropdown option {
+            background: white;
+            color: #8B4513;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #8B4513 0%, #D4AF37 100%);
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+
+        .attractions {
+            padding: 60px 20px;
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #8B4513;
+            margin-bottom: 3rem;
+        }
+
+        .attraction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .attraction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .card-image {
+            height: 200px;
+            background: linear-gradient(135deg, #D4AF37, #8B4513);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            color: #8B4513;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card-content p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .info-section {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #8B4513, #D4AF37);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .info-box p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .events-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f5e6d3 0%, #faf0e6 100%);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #D4AF37;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .event-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .event-card h3 {
+            color: #8B4513;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .event-date {
+            color: #D4AF37;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .event-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #D4AF37;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        footer strong {
+            color: #D4AF37;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <h1 data-en="Discover Luxor" data-ar="اكتشف الأقصر" data-pt="Descubra Luxor" data-fr="Découvrez Louxor" data-es="Descubre Lúxor" data-de="Entdecken Sie Luxor">
+                            اكتشف الأقصر
+                        </h1>
+                    <p data-en="Gateway to Ancient Egypt" data-ar="بوابة مصر القديمة" data-pt="Portal para o Egito Antigo" data-fr="Porte vers l\'Égypte Ancienne" data-es="Puerta al Antiguo Egipto" data-de="Tor zum Alten Ägypten">
+                            بوابة مصر القديمة
+                        </p>
+                </div>
+                <div class="language-selector">
+                    <label for="language-select" data-en="Languages:" data-ar="اللغات:" data-pt="Idiomas:" data-es="Idiomas:" data-de="Sprachen:">
+                            اللغات:
+                        </label>
+                    <select id="language-select" class="language-dropdown" onchange="setLanguage(this.value)">
+                        <option value="en" selected>English</option>
+                        <option value="ar">العربية (Egyptian)</option>
+                        <option value="pt">Português</option>
+                        <option value="fr">Français</option>
+                        <option value="es">Español</option>
+                        <option value="de">Deutsch</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2 data-en="Journey Through 5,000 Years of History" 
+            data-ar="رحلة عبر 5000 عام من التاريخ" 
+            data-pt="Viagem Através de 5.000 Anos de História"
+            data-es="Viaje a Través de 5.000 Años de Historia"
+            data-de="Reise durch 5.000 Jahre Geschichte"
+            data-fr="Voyage à Travers 5 000 Ans d\'Histoire">
+                            رحلة عبر 5000 عام من التاريخ
+                        </h2>
+        <p data-en="Experience the magnificent temples, royal tombs, and timeless wonders of ancient Thebes" 
+           data-ar="اختبر المعابد الرائعة والمقابر الملكية وعجائب طيبة القديمة الخالدة"
+           data-pt="Experimente os magníficos templos, túmulos reais e maravilhas eternas da antiga Tebas"
+           data-es="Experimenta los magníficos templos, tumbas reales y maravillas eternas de la antigua Tebas"
+           data-de="Erleben Sie die prächtigen Tempel, königlichen Gräber und zeitlosen Wunder des antiken Theben"
+           data-fr="Découvrez les magnifiques temples, tombeaux royaux et merveilles intemporelles de l\'ancienne Thèbes">
+                            اختبر المعابد الرائعة والمقابر الملكية وعجائب طيبة القديمة الخالدة
+                        </p>
+    </section>
+
+    <section class="attractions">
+        <div class="container">
+            <h2 class="section-title" data-en="Unmissable Attractions" data-ar="المعالم السياحية" data-pt="Atrações Imperdíveis" data-fr="Attractions Incontournables" data-es="Atracciones Imperdibles" data-de="Unverzichtbare Attraktionen">
+                المعالم السياحية
+            </h2>
+
+            <div class="attraction-grid">
+                <div class="attraction-card">
+                    <div class="card-image">⚱️</div>
+                    <div class="card-content">
+                        <h3 data-en="Valley of the Kings" data-ar="وادي الملوك" data-pt="Vale dos Reis" data-fr="Vallée des Rois" data-es="Valle de los Reyes" data-de="Tal der Könige">وادي الملوك</h3>
+                        <p data-en="The legendary burial ground of Egypt's New Kingdom pharaohs. Over 60 tombs carved deep into the mountainside, including the famous tomb of Tutankhamun. Each tomb reveals exquisite wall paintings depicting the journey to the afterlife."
+                           data-ar="مقبرة الفراعنة الأسطورية في عصر الدولة الحديثة. أكثر من 60 مقبرة منحوتة في أعماق الجبل، بما في ذلك مقبرة توت عنخ آمون الشهيرة. تكشف كل مقبرة عن لوحات جدارية رائعة تصور الرحلة إلى الحياة الآخرة."
+                           data-pt="O lendário local de sepultamento dos faraós do Novo Reino do Egito. Mais de 60 túmulos escavados nas montanhas, incluindo o famoso túmulo de Tutancâmon. Cada túmulo revela pinturas murais requintadas retratando a jornada para a vida após a morte."
+                           data-es="El legendario lugar de entierro de los faraones del Nuevo Reino de Egipto. Más de 60 tumbas excavadas en la montaña, incluida la famosa tumba de Tutankamón. Cada tumba revela exquisitas pinturas murales que representan el viaje al más allá."
+                           data-fr="Le légendaire lieu de sépulture des pharaons du Nouvel Empire égyptien. Plus de 60 tombes creusées dans la montagne, dont la célèbre tombe de Toutânkhamon. Chaque tombe révèle des peintures murales exquises représentant le voyage vers l'au-delà."
+                           data-de="Die legendäre Grabstätte der Pharaonen des Neuen Reiches Ägyptens. Über 60 Gräber, die tief in den Berg gehauen sind, darunter das berühmte Grab von Tutanchamun. Jedes Grab zeigt exquisite Wandmalereien, die die Reise ins Jenseits darstellen.">
+                            مقبرة الفراعنة الأسطورية في عصر الدولة الحديثة. أكثر من 60 مقبرة منحوتة في أعماق الجبل، بما في ذلك مقبرة توت عنخ آمون الشهيرة. تكشف كل مقبرة عن لوحات جدارية رائعة تصور الرحلة إلى الحياة الآخرة.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="card-image">👑</div>
+                    <div class="card-content">
+                        <h3 data-en="Tomb of Tutankhamun" data-ar="مقبرة توت عنخ آمون" data-pt="Túmulo de Tutancâmon" data-fr="Tombeau de Toutânkhamon" data-es="Tumba de Tutankamón" data-de="Grab des Tutanchamun">مقبرة توت عنخ آمون</h3>
+                        <p data-en="The most famous tomb in the Valley of the Kings! Discovered in 1922 by Howard Carter, it contained thousands of treasures. Visit KV62 to see where the boy king rested for over 3,000 years and view his golden sarcophagus."
+                           data-ar="أشهر مقبرة في وادي الملوك! اكتشفها هوارد كارتر عام 1922، واحتوت على آلاف الكنوز. قم بزيارة KV62 لترى المكان الذي استراح فيه الملك الصبي لأكثر من 3000 عام وشاهد تابوته الذهبي."
+                           data-pt="O túmulo mais famoso do Vale dos Reis! Descoberto em 1922 por Howard Carter, continha milhares de tesouros. Visite KV62 para ver onde o rei menino descansou por mais de 3.000 anos e veja seu sarcófago dourado."
+                           data-es="¡La tumba más famosa del Valle de los Reyes! Descubierta en 1922 por Howard Carter, contenía miles de tesoros. Visita KV62 para ver dónde descansó el rey niño durante más de 3,000 años y contempla su sarcófago dorado."
+                           data-fr="Le tombeau le plus célèbre de la Vallée des Rois ! Découvert en 1922 par Howard Carter, il contenait des milliers de trésors. Visitez KV62 pour voir où le roi enfant a reposé pendant plus de 3 000 ans et admirez son sarcophage doré."
+                           data-de="Das berühmteste Grab im Tal der Könige! 1922 von Howard Carter entdeckt, enthielt es Tausende von Schätzen. Besuchen Sie KV62, um zu sehen, wo der Kindkönig über 3.000 Jahre ruhte, und betrachten Sie seinen goldenen Sarkophag.">
+                            أشهر مقبرة في وادي الملوك! اكتشفها هوارد كارتر عام 1922، واحتوت على آلاف الكنوز. قم بزيارة KV62 لترى المكان الذي استراح فيه الملك الصبي لأكثر من 3000 عام وشاهد تابوته الذهبي.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="card-image">🏛️</div>
+                    <div class="card-content">
+                        <h3 data-en="Karnak Temple" data-ar="معبد الكرنك" data-pt="Templo de Karnak" data-fr="Temple de Karnak" data-es="Templo de Karnak" data-de="Karnak-Tempel">معبد الكرنك</h3>
+                        <p data-en="The largest ancient religious site in the world! Walk through the Great Hypostyle Hall with its 134 massive columns. This vast complex took over 2,000 years to build and showcases the power of ancient Thebes."
+                           data-ar="أكبر موقع ديني قديم في العالم! امشِ عبر القاعة المعمدة الكبرى بأعمدتها الـ 134 الضخمة. استغرق بناء هذا المجمع الضخم أكثر من 2000 عام ويعرض قوة طيبة القديمة."
+                           data-pt="O maior local religioso antigo do mundo! Caminhe pelo Grande Salão Hipostilo com suas 134 colunas enormes. Este vasto complexo levou mais de 2.000 anos para ser construído e mostra o poder da antiga Tebas."
+                           data-es="¡El sitio religioso antiguo más grande del mundo! Camina por la Gran Sala Hipóstila con sus 134 enormes columnas. Este vasto complejo tardó más de 2,000 años en construirse y muestra el poder de la antigua Tebas."
+                           data-fr="Le plus grand site religieux antique du monde ! Parcourez la Grande Salle Hypostyle avec ses 134 colonnes massives. Ce vaste complexe a mis plus de 2 000 ans à être construit et témoigne de la puissance de l'ancienne Thèbes."
+                           data-de="Die größte antike religiöse Stätte der Welt! Gehen Sie durch die Große Hypostylhalle mit ihren 134 massiven Säulen. Dieser riesige Komplex dauerte über 2.000 Jahre zu bauen und zeigt die Macht des antiken Theben.">
+                            أكبر موقع ديني قديم في العالم! امشِ عبر القاعة المعمدة الكبرى بأعمدتها الـ 134 الضخمة. استغرق بناء هذا المجمع الضخم أكثر من 2000 عام ويعرض قوة طيبة القديمة.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="card-image">🌅</div>
+                    <div class="card-content">
+                        <h3 data-en="Luxor Temple" data-ar="معبد الأقصر" data-pt="Templo de Luxor" data-fr="Temple de Louxor" data-es="Templo de Luxor" data-de="Luxor-Tempel">معبد الأقصر</h3>
+                        <p data-en="A stunning temple complex on the east bank of the Nile, built by Amenhotep III and Ramesses II. Visit at night when it's beautifully illuminated. The towering obelisk and massive statues create an unforgettable atmosphere."
+                           data-ar="مجمع معابد مذهل على الضفة الشرقية لنهر النيل، بناه أمنحتب الثالث ورمسيس الثاني. قم بزيارته ليلاً عندما يكون مضاءً بشكل جميل. المسلة الشاهقة والتماثيل الضخمة تخلق جواً لا يُنسى."
+                           data-pt="Um impressionante complexo de templos na margem leste do Nilo, construído por Amenhotep III e Ramsés II. Visite à noite quando está lindamente iluminado. O obelisco imponente e as estátuas maciças criam uma atmosfera inesquecível."
+                           data-es="Un impresionante complejo de templos en la orilla este del Nilo, construido por Amenhotep III y Ramsés II. Visítalo de noche cuando está bellamente iluminado. El obelisco imponente y las estatuas masivas crean una atmósfera inolvidable."
+                           data-fr="Un magnifique complexe de temples sur la rive est du Nil, construit par Amenhotep III et Ramsès II. Visitez-le la nuit lorsqu'il est magnifiquement illuminé. L'obélisque imposant et les statues massives créent une atmosphère inoubliable."
+                           data-de="Ein atemberaubender Tempelkomplex am Ostufer des Nils, erbaut von Amenhotep III. und Ramses II. Besuchen Sie ihn nachts, wenn er wunderschön beleuchtet ist. Der imposante Obelisk und die massiven Statuen schaffen eine unvergessliche Atmosphäre.">
+                            مجمع معابد مذهل على الضفة الشرقية لنهر النيل، بناه أمنحتب الثالث ورمسيس الثاني. قم بزيارته ليلاً عندما يكون مضاءً بشكل جميل. المسلة الشاهقة والتماثيل الضخمة تخلق جواً لا يُنسى.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="card-image">⛰️</div>
+                    <div class="card-content">
+                        <h3 data-en="Temple of Hatshepsut (Deir el-Bahri)" data-ar="معبد حتشبسوت (الدير البحري)" data-pt="Templo de Hatshepsut (Deir el-Bahri)" data-fr="Temple d'Hatchepsout (Deir el-Bahari)" data-es="Templo de Hatshepsut (Deir el-Bahari)" data-de="Tempel der Hatschepsut (Deir el-Bahari)">معبد حتشبسوت (الدير البحري)</h3>
+                        <p data-en="The magnificent mortuary temple of Egypt's most successful female pharaoh. Built into the dramatic cliffs, its three terraced levels showcase remarkable ancient engineering. The colonnaded terraces offer stunning views of the Theban mountains."
+                           data-ar="معبد الجنائز الرائع لأنجح فرعون أنثى في مصر. مبني في المنحدرات الدرامية، تعرض مستوياته المدرجة الثلاثة هندسة قديمة رائعة. تقدم الشرفات ذات الأعمدة إطلالات خلابة على جبال طيبة."
+                           data-pt="O magnífico templo mortuário da faraó feminina mais bem-sucedida do Egito. Construído nos penhascos dramáticos, seus três níveis em terraços mostram engenharia antiga notável. Os terraços com colunatas oferecem vistas deslumbrantes das montanhas tebanas."
+                           data-es="El magnífico templo mortuorio de la faraona más exitosa de Egipto. Construido en los dramáticos acantilados, sus tres niveles en terrazas muestran ingeniería antigua notable. Las terrazas con columnas ofrecen vistas impresionantes de las montañas tebanas."
+                           data-fr="Le magnifique temple funéraire de la pharaonne la plus accomplie d'Égypte. Construit dans les falaises spectaculaires, ses trois niveaux en terrasses témoignent d'une ingénierie ancienne remarquable. Les terrasses à colonnades offrent des vues imprenables sur les montagnes thébaines."
+                           data-de="Der prächtige Totentempel der erfolgreichsten weiblichen Pharaonin Ägyptens. In die dramatischen Klippen gebaut, zeigen ihre drei terrassierten Ebenen bemerkenswerte antike Ingenieurskunst. Die Säulenterrassen bieten atemberaubende Ausblicke auf die thebanischen Berge.">
+                            معبد الجنائز الرائع لأنجح فرعون أنثى في مصر. مبني في المنحدرات الدرامية، تعرض مستوياته المدرجة الثلاثة هندسة قديمة رائعة. تقدم الشرفات ذات الأعمدة إطلالات خلابة على جبال طيبة.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="card-image">🗿</div>
+                    <div class="card-content">
+                        <h3 data-en="Colossi of Memnon" data-ar="تمثالا ممنون" data-pt="Colossos de Mêmnon" data-fr="Colosses de Memnon" data-es="Colosos de Memnón" data-de="Kolosse von Memnon">تمثالا ممنون</h3>
+                        <p data-en="Two massive stone statues of Pharaoh Amenhotep III standing 18 metres tall. These ancient guardians have watched over the Theban necropolis for 3,400 years. The perfect photo opportunity on your way to the Valley of the Kings!"
+                           data-ar="تمثالان حجريان ضخمان للفرعون أمنحتب الثالث بارتفاع 18 متراً. هذان الحارسان القديمان يراقبان جبانة طيبة منذ 3400 عام. فرصة مثالية للتصوير في طريقك إلى وادي الملوك!"
+                           data-pt="Duas estátuas de pedra maciças do Faraó Amenhotep III com 18 metros de altura. Esses guardiões antigos vigiam a necrópole tebana há 3.400 anos. A oportunidade perfeita para fotos no caminho para o Vale dos Reis!"
+                           data-es="Dos estatuas de piedra masivas del faraón Amenhotep III de 18 metros de altura. Estos guardianes antiguos han vigilado la necrópolis tebana durante 3,400 años. ¡La oportunidad perfecta para fotos en tu camino al Valle de los Reyes!"
+                           data-fr="Deux statues de pierre massives du pharaon Amenhotep III de 18 mètres de haut. Ces gardiens antiques veillent sur la nécropole thébaine depuis 3 400 ans. L'opportunité photo parfaite sur votre chemin vers la Vallée des Rois !"
+                           data-de="Zwei massive Steinstatuen von Pharao Amenhotep III., 18 Meter hoch. Diese alten Wächter wachen seit 3.400 Jahren über die thebanische Nekropole. Die perfekte Fotogelegenheit auf dem Weg zum Tal der Könige!">
+                            تمثالان حجريان ضخمان للفرعون أمنحتب الثالث بارتفاع 18 متراً. هذان الحارسان القديمان يراقبان جبانة طيبة منذ 3400 عام. فرصة مثالية للتصوير في طريقك إلى وادي الملوك!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="card-image">👸</div>
+                    <div class="card-content">
+                        <h3 data-en="Valley of the Queens" data-ar="وادي الملكات" data-pt="Vale das Rainhas" data-fr="Vallée des Reines" data-es="Valle de las Reinas" data-de="Tal der Königinnen">وادي الملكات</h3>
+                        <p data-en="The final resting place of queens and royal children. Visit the spectacular tomb of Queen Nefertari with its vibrant, well-preserved paintings. Less crowded than the Valley of the Kings but equally magnificent!"
+                           data-ar="مثوى الملكات والأطفال الملكيين الأخير. قم بزيارة مقبرة الملكة نفرتاري المذهلة بلوحاتها النابضة بالحياة والمحفوظة جيداً. أقل ازدحاماً من وادي الملوك ولكنها رائعة بنفس القدر!"
+                           data-pt="O local de descanso final de rainhas e crianças reais. Visite o espetacular túmulo da Rainha Nefertari com suas pinturas vibrantes e bem preservadas. Menos lotado que o Vale dos Reis, mas igualmente magnífico!"
+                           data-es="El lugar de descanso final de reinas y niños reales. Visita la espectacular tumba de la Reina Nefertari con sus pinturas vibrantes y bien conservadas. ¡Menos concurrido que el Valle de los Reyes pero igualmente magnífico!"
+                           data-fr="Le lieu de repos final des reines et des enfants royaux. Visitez le spectaculaire tombeau de la reine Néfertari avec ses peintures vibrantes et bien conservées. Moins fréquenté que la Vallée des Rois mais tout aussi magnifique !"
+                           data-de="Die letzte Ruhestätte von Königinnen und königlichen Kindern. Besuchen Sie das spektakuläre Grab der Königin Nefertari mit ihren lebendigen, gut erhaltenen Gemälden. Weniger überfüllt als das Tal der Könige, aber ebenso prächtig!">
+                            مثوى الملكات والأطفال الملكيين الأخير. قم بزيارة مقبرة الملكة نفرتاري المذهلة بلوحاتها النابضة بالحياة والمحفوظة جيداً. أقل ازدحاماً من وادي الملوك ولكنها رائعة بنفس القدر!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="card-image">🦁</div>
+                    <div class="card-content">
+                        <h3 data-en="Avenue of Sphinxes" data-ar="طريق الكباش" data-pt="Avenida das Esfinges" data-fr="Avenue des Sphinx" data-es="Avenida de las Esfinges" data-de="Sphingenallee">طريق الكباش</h3>
+                        <p data-en="A 2.7km ceremonial pathway lined with over 1,000 sphinx statues connecting Karnak and Luxor temples. Recently restored and reopened! Walk the same path ancient priests took during sacred processions 3,000 years ago."
+                           data-ar="ممر احتفالي بطول 2.7 كم مصطف بأكثر من 1000 تمثال أبو الهول يربط معبدي الكرنك والأقصر. تم ترميمه وإعادة افتتاحه مؤخراً! امشِ على نفس الطريق الذي سلكه الكهنة القدماء خلال المواكب المقدسة منذ 3000 عام."
+                           data-pt="Um caminho cerimonial de 2,7 km ladeado por mais de 1.000 estátuas de esfinges conectando os templos de Karnak e Luxor. Recentemente restaurado e reaberto! Caminhe pelo mesmo caminho que os antigos sacerdotes percorreram durante procissões sagradas há 3.000 anos."
+                           data-es="Un camino ceremonial de 2,7 km bordeado por más de 1,000 estatuas de esfinges que conecta los templos de Karnak y Luxor. ¡Recientemente restaurado y reabierto! Camina por el mismo sendero que los antiguos sacerdotes recorrieron durante procesiones sagradas hace 3,000 años."
+                           data-fr="Une voie cérémonielle de 2,7 km bordée de plus de 1 000 statues de sphinx reliant les temples de Karnak et de Louxor. Récemment restaurée et rouverte ! Marchez sur le même chemin emprunté par les anciens prêtres lors des processions sacrées il y a 3 000 ans."
+                           data-de="Ein 2,7 km langer zeremonieller Weg, gesäumt von über 1.000 Sphinxstatuen, der die Tempel von Karnak und Luxor verbindet. Kürzlich restauriert und wiedereröffnet! Gehen Sie denselben Weg, den antike Priester vor 3.000 Jahren bei heiligen Prozessionen gingen.">
+                            ممر احتفالي بطول 2.7 كم مصطف بأكثر من 1000 تمثال أبو الهول يربط معبدي الكرنك والأقصر. تم ترميمه وإعادة افتتاحه مؤخراً! امشِ على نفس الطريق الذي سلكه الكهنة القدماء خلال المواكب المقدسة منذ 3000 عام.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <div class="container">
+            <h2 class="section-title" data-en="Plan Your Visit" data-ar="خطط لزيارتك" data-pt="Planeie a Sua Visita" data-fr="Planifiez Votre Visite" data-es="Planifica Tu Visita" data-de="Planen Sie Ihren Besuch">
+                            خطط لزيارتك
+                        </h2>
+            
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3 data-en="Best Time to Visit" data-ar="أفضل وقت للزيارة" data-pt="Melhor Época para Visitar" data-fr="Meilleure Période pour Visiter" data-es="Mejor Época para Visitar" data-de="Beste Reisezeit">
+                            أفضل وقت للزيارة
+                        </h3>
+                    <p data-en="October to April offers pleasant weather. Early morning visits help avoid crowds and heat."
+                       data-ar="من أكتوبر إلى أبريل يوفر طقساً لطيفاً. الزيارات الصباحية الباكرة تساعد على تجنب الزحام والحرارة."
+                       data-pt="De outubro a abril oferece clima agradável. Visitas pela manhã cedo ajudam a evitar multidões e calor."
+                       data-es="De octubre a abril ofrece un clima agradable. Las visitas por la mañana temprano ayudan a evitar multitudes y calor." data-fr="D'octobre à avril offre un climat agréable. Les visites tôt le matin aident à éviter les foules et la chaleur." data-de="Oktober bis April bietet angenehmes Wetter. Frühe Morgenbesuche helfen, Menschenmassen und Hitze zu vermeiden.">
+                            من أكتوبر إلى أبريل يوفر طقساً لطيفاً. الزيارات الصباحية الباكرة تساعد على تجنب الزحام والحرارة.
+                        </p>
+                </div>
+
+                <div class="info-box">
+                    <h3 data-en="Getting Around" data-ar="التنقل" data-pt="Como se Deslocar" data-fr="Se Déplacer" data-es="Cómo Desplazarse" data-de="Fortbewegung">
+                            التنقل
+                        </h3>
+                    <p data-en="Taxis, private drivers, and organised tours are readily available. The sites are spread across both banks of the Nile."
+                       data-ar="تتوفر سيارات الأجرة والسائقين الخاصين والجولات المنظمة بسهولة. تنتشر المواقع على جانبي نهر النيل."
+                       data-pt="Táxis, motoristas particulares e passeios organizados estão prontamente disponíveis. Os locais estão espalhados em ambas as margens do Nilo." data-es="Taxis, conductores privados y tours organizados están fácilmente disponibles. Los sitios están distribuidos en ambas orillas del Nilo." data-fr="Les taxis, chauffeurs privés et circuits organisés sont facilement disponibles. Les sites sont répartis sur les deux rives du Nil." data-de="Taxis, private Fahrer und organisierte Touren sind leicht verfügbar. Die Sehenswürdigkeiten verteilen sich auf beide Nilufer.">
+                            تتوفر سيارات الأجرة والسائقين الخاصين والجولات المنظمة بسهولة. تنتشر المواقع على جانبي نهر النيل.
+                        </p>
+                </div>
+
+                <div class="info-box">
+                    <h3 data-en="Essential Tips" data-ar="نصائح أساسية" data-pt="Dicas Essenciais" data-fr="Conseils Essentiels" data-es="Consejos Esenciales" data-de="Wichtige Tipps">
+                            نصائح أساسية
+                        </h3>
+                    <p data-en="Bring sun protection, comfortable shoes, and plenty of water. Consider hiring a knowledgeable guide for deeper insights."
+                       data-ar="احضر واقي الشمس وأحذية مريحة والكثير من الماء. فكر في توظيف مرشد ذو خبرة للحصول على رؤى أعمق."
+                       data-pt="Traga proteção solar, sapatos confortáveis e muita água. Considere contratar um guia experiente para conhecimentos mais profundos." data-es="Traiga protección solar, zapatos cómodos y mucha agua. Considere contratar un guía experto para obtener conocimientos más profundos." data-fr="Apportez une protection solaire, des chaussures confortables et beaucoup d'eau. Envisagez d'engager un guide expérimenté pour des connaissances plus approfondies." data-de="Bringen Sie Sonnenschutz, bequeme Schuhe und viel Wasser mit. Erwägen Sie, einen sachkundigen Führer für tiefere Einblicke zu engagieren.">
+                            احضر واقي الشمس وأحذية مريحة والكثير من الماء. فكر في توظيف مرشد ذو خبرة للحصول على رؤى أعمق.
+                        </p>
+                </div>
+
+                <div class="info-box">
+                    <h3 data-en="Photography" data-ar="التصوير" data-pt="Fotografia" data-fr="Photographie" data-es="Fotografía" data-de="Fotografie">
+                            التصوير
+                        </h3>
+                    <p data-en="Photography is allowed at most sites with an additional ticket. Flash photography inside tombs is prohibited."
+                       data-ar="التصوير مسموح به في معظم المواقع بتذكرة إضافية. التصوير بالفلاش داخل المقابر ممنوع."
+                       data-pt="A fotografia é permitida na maioria dos locais com um bilhete adicional. Fotografia com flash dentro dos túmulos é proibida." data-es="Se permite la fotografía en la mayoría de los sitios con un boleto adicional. La fotografía con flash dentro de las tumbas está prohibida." data-fr="La photographie est autorisée sur la plupart des sites avec un billet supplémentaire. La photographie au flash à l'intérieur des tombeaux est interdite." data-de="Fotografie ist an den meisten Stätten mit einem zusätzlichen Ticket erlaubt. Blitzfotografie in den Gräbern ist verboten.">
+                            التصوير مسموح به في معظم المواقع بتذكرة إضافية. التصوير بالفلاش داخل المقابر ممنوع.
+                        </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="events-section">
+        <div class="container">
+            <h2 class="section-title" data-en="Egyptian Events & Celebrations" data-ar="الفعاليات والاحتفالات المصرية" data-pt="Eventos e Celebrações Egípcias" data-fr="Événements et Célébrations Égyptiennes" data-es="Eventos y Celebraciones Egipcias" data-de="Ägyptische Veranstaltungen & Feiern">
+                            الفعاليات والاحتفالات المصرية
+                        </h2>
+            
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-icon">🎊</div>
+                    <h3 data-en="Sham El-Nessim" data-ar="شم النسيم" data-pt="Sham El-Nessim" data-fr="Sham El-Nessim" data-es="Sham El-Nessim" data-de="Sham El-Nessim">
+                            شم النسيم
+                        </h3>
+                    <p class="event-date" data-en="Spring (April/May)" data-ar="الربيع (أبريل/مايو)" data-pt="Primavera (Abril/Maio)" data-es="Primavera (abril/mayo)" data-fr="Printemps (avril/mai)" data-de="Frühling (April/Mai)">
+                            الربيع (أبريل/مايو)
+                        </p>
+                    <p data-en="Ancient spring festival dating back to pharaonic times. Egyptians celebrate with picnics, traditional foods like feseekh (salted fish), and coloured eggs. A perfect time to experience local culture!"
+                       data-ar="مهرجان الربيع القديم الذي يعود إلى العصر الفرعوني. يحتفل المصريون بالنزهات والأطعمة التقليدية مثل الفسيخ والبيض الملون. وقت مثالي لتجربة الثقافة المحلية!"
+                       data-pt="Antigo festival da primavera que remonta aos tempos faraónicos. Os egípcios celebram com piqueniques, comidas tradicionais como feseekh (peixe salgado) e ovos coloridos. Um momento perfeito para vivenciar a cultura local!" data-es="Antiguo festival de primavera que se remonta a los tiempos faraónicos. Los egipcios celebran con picnics, comidas tradicionales como feseekh (pescado salado) y huevos de colores. ¡Un momento perfecto para experimentar la cultura local!" data-fr="Ancien festival de printemps remontant à l'époque pharaonique. Les Égyptiens célèbrent avec des pique-niques, des plats traditionnels comme le feseekh (poisson salé) et des œufs colorés. Un moment parfait pour découvrir la culture locale !" data-de="Altes Frühlingsfest aus pharaonischer Zeit. Ägypter feiern mit Picknicks, traditionellen Speisen wie Feseekh (gesalzener Fisch) und bunten Eiern. Eine perfekte Zeit, um die lokale Kultur zu erleben!">
+                            مهرجان الربيع القديم الذي يعود إلى العصر الفرعوني. يحتفل المصريون بالنزهات والأطعمة التقليدية مثل الفسيخ والبيض الملون. وقت مثالي لتجربة الثقافة المحلية!
+                        </p>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-icon">🕌</div>
+                    <h3 data-en="Ramadan & Eid al-Fitr" data-ar="رمضان وعيد الفطر" data-pt="Ramadão e Eid al-Fitr" data-fr="Ramadan et Aïd al-Fitr" data-es="Ramadán y Eid al-Fitr" data-de="Ramadan & Eid al-Fitr">
+                            رمضان وعيد الفطر
+                        </h3>
+                    <p class="event-date" data-en="Varies (Lunar Calendar)" data-ar="يتغير (التقويم القمري)" data-pt="Variável (Calendário Lunar)" data-es="Variable (calendario lunar)" data-fr="Variable (calendrier lunaire)" data-de="Variabel (Mondkalender)">
+                            يتغير (التقويم القمري)
+                        </p>
+                    <p data-en="Experience the magical atmosphere of Ramadan with evening iftars and decorated streets. Eid al-Fitr follows with three days of celebrations, special sweets like kahk, and festive gatherings throughout Luxor."
+                       data-ar="استمتع بأجواء رمضان الساحرة مع موائد الإفطار المسائية والشوارع المزينة. يليه عيد الفطر بثلاثة أيام من الاحتفالات والحلويات الخاصة مثل الكحك والتجمعات الاحتفالية في جميع أنحاء الأقصر."
+                       data-pt="Experimente a atmosfera mágica do Ramadão com iftares noturnos e ruas decoradas. O Eid al-Fitr segue com três dias de celebrações, doces especiais como kahk e encontros festivos por toda Luxor." data-es="Experimenta la atmósfera mágica del Ramadán con iftares nocturnos y calles decoradas. El Eid al-Fitr sigue con tres días de celebraciones, dulces especiales como kahk y reuniones festivas en todo Lúxor." data-fr="Découvrez l'atmosphère magique du Ramadan avec des iftars en soirée et des rues décorées. L'Aïd al-Fitr suit avec trois jours de célébrations, des douceurs spéciales comme le kahk et des rassemblements festifs à travers Louxor." data-de="Erleben Sie die magische Atmosphäre des Ramadan mit abendlichen Iftars und geschmückten Straßen. Eid al-Fitr folgt mit drei Tagen voller Feiern, besonderen Süßigkeiten wie Kahk und festlichen Zusammenkünften in ganz Luxor.">
+                            استمتع بأجواء رمضان الساحرة مع موائد الإفطار المسائية والشوارع المزينة. يليه عيد الفطر بثلاثة أيام من الاحتفالات والحلويات الخاصة مثل الكحك والتجمعات الاحتفالية في جميع أنحاء الأقصر.
+                        </p>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-icon">🎭</div>
+                    <h3 data-en="Luxor African Film Festival" data-ar="مهرجان الأقصر للسينما الأفريقية" data-pt="Festival de Cinema Africano de Luxor" data-fr="Festival du Film Africain de Louxor" data-es="Festival de Cine Africano de Luxor" data-de="Luxor Afrikanisches Filmfestival">
+                            مهرجان الأقصر للسينما الأفريقية
+                        </h3>
+                    <p class="event-date" data-en="March" data-ar="مارس" data-pt="Março" data-es="Marzo" data-fr="Mars" data-de="März">
+                            مارس
+                        </p>
+                    <p data-en="Annual celebration of African cinema held among ancient temples. Watch films in unique venues, attend workshops, and meet filmmakers. The festival transforms Luxor into a cultural hub blending ancient and modern arts."
+                       data-ar="احتفال سنوي بالسينما الأفريقية يقام بين المعابد القديمة. شاهد الأفلام في أماكن فريدة، واحضر ورش العمل، والتقِ بصانعي الأفلام. يحول المهرجان الأقصر إلى مركز ثقافي يمزج الفنون القديمة والحديثة."
+                       data-pt="Celebração anual do cinema africano realizada entre templos antigos. Assista filmes em locais únicos, participe de workshops e conheça cineastas. O festival transforma Luxor num centro cultural que mistura artes antigas e modernas." data-es="Celebración anual del cine africano realizada entre templos antiguos. Mira películas en lugares únicos, asiste a talleres y conoce a cineastas. El festival transforma Lúxor en un centro cultural que mezcla artes antiguas y modernas." data-fr="Célébration annuelle du cinéma africain organisée parmi les temples antiques. Regardez des films dans des lieux uniques, assistez à des ateliers et rencontrez des cinéastes. Le festival transforme Louxor en un centre culturel mélangeant arts anciens et modernes." data-de="Jährliche Feier des afrikanischen Kinos in antiken Tempeln. Sehen Sie Filme an einzigartigen Orten, nehmen Sie an Workshops teil und treffen Sie Filmemacher. Das Festival verwandelt Luxor in ein kulturelles Zentrum, das alte und moderne Künste verbindet.">
+                            احتفال سنوي بالسينما الأفريقية يقام بين المعابد القديمة. شاهد الأفلام في أماكن فريدة، واحضر ورش العمل، والتقِ بصانعي الأفلام. يحول المهرجان الأقصر إلى مركز ثقافي يمزج الفنون القديمة والحديثة.
+                        </p>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-icon">☀️</div>
+                    <h3 data-en="Sun Festival at Abu Simbel" data-ar="مهرجان الشمس في أبو سمبل" data-pt="Festival do Sol em Abu Simbel" data-fr="Festival du Soleil à Abou Simbel" data-es="Festival del Sol en Abu Simbel" data-de="Sonnenfest in Abu Simbel">
+                            مهرجان الشمس في أبو سمبل
+                        </h3>
+                    <p class="event-date" data-en="22 February & 22 October" data-ar="22 فبراير و 22 أكتوبر" data-pt="22 de Fevereiro e 22 de Outubro" data-es="22 de febrero y 22 de octubre" data-fr="22 février et 22 octobre" data-de="22. Februar und 22. Oktober">
+                            22 فبراير و 22 أكتوبر
+                        </p>
+                    <p data-en="Twice yearly, sunlight illuminates the inner sanctuary of Abu Simbel temple. Though south of Luxor, many tours depart from here. Witness this ancient astronomical marvel celebrating Ramesses II's birthday and coronation."
+                       data-ar="مرتين في السنة، تضيء أشعة الشمس قدس الأقداس الداخلي لمعبد أبو سمبل. رغم أنه جنوب الأقصر، تنطلق العديد من الجولات من هنا. شاهد هذه المعجزة الفلكية القديمة التي تحتفل بعيد ميلاد رمسيس الثاني وتتويجه."
+                       data-pt="Duas vezes por ano, a luz do sol ilumina o santuário interno do templo de Abu Simbel. Embora ao sul de Luxor, muitos passeios partem daqui. Testemunhe esta maravilha astronómica antiga celebrando o aniversário e coroação de Ramsés II." data-es="Dos veces al año, la luz del sol ilumina el santuario interior del templo de Abu Simbel. Aunque al sur de Lúxor, muchos tours parten desde aquí. Presencia esta maravilla astronómica antigua que celebra el cumpleaños y la coronación de Ramsés II." data-fr="Deux fois par an, la lumière du soleil illumine le sanctuaire intérieur du temple d'Abou Simbel. Bien qu'au sud de Louxor, de nombreux circuits partent d'ici. Assistez à cette merveille astronomique ancienne célébrant l'anniversaire et le couronnement de Ramsès II." data-de="Zweimal jährlich beleuchtet das Sonnenlicht das innere Heiligtum des Abu-Simbel-Tempels. Obwohl südlich von Luxor gelegen, starten viele Touren von hier. Erleben Sie dieses antike astronomische Wunder, das Ramses II. Geburtstag und Krönung feiert.">
+                            مرتين في السنة، تضيء أشعة الشمس قدس الأقداس الداخلي لمعبد أبو سمبل. رغم أنه جنوب الأقصر، تنطلق العديد من الجولات من هنا. شاهد هذه المعجزة الفلكية القديمة التي تحتفل بعيد ميلاد رمسيس الثاني وتتويجه.
+                        </p>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-icon">🎆</div>
+                    <h3 data-en="Coptic Christmas" data-ar="عيد الميلاد القبطي" data-pt="Natal Copta" data-fr="Noël Copte" data-es="Navidad Copta" data-de="Koptisches Weihnachten">
+                            عيد الميلاد القبطي
+                        </h3>
+                    <p class="event-date" data-en="7 January" data-ar="7 يناير" data-pt="7 de Janeiro" data-es="7 de enero" data-fr="7 janvier" data-de="7. Januar">
+                            7 يناير
+                        </p>
+                    <p data-en="Egypt's Coptic Christian community celebrates Christmas on 7th January. Experience beautiful midnight masses, traditional fasting foods, and the warm hospitality of one of the oldest Christian communities in the world."
+                       data-ar="يحتفل المجتمع القبطي المسيحي في مصر بعيد الميلاد في 7 يناير. استمتع بقداسات منتصف الليل الجميلة وأطعمة الصيام التقليدية والضيافة الدافئة لواحدة من أقدم المجتمعات المسيحية في العالم."
+                       data-pt="A comunidade cristã copta do Egito celebra o Natal a 7 de janeiro. Experimente belas missas da meia-noite, comidas tradicionais de jejum e a calorosa hospitalidade de uma das mais antigas comunidades cristãs do mundo." data-es="La comunidad cristiana copta de Egipto celebra la Navidad el 7 de enero. Experimenta hermosas misas de medianoche, comidas tradicionales de ayuno y la cálida hospitalidad de una de las comunidades cristianas más antiguas del mundo." data-fr="La communauté chrétienne copte d'Égypte célèbre Noël le 7 janvier. Découvrez de belles messes de minuit, des plats traditionnels de jeûne et la chaleureuse hospitalité de l'une des plus anciennes communautés chrétiennes du monde." data-de="Die koptische christliche Gemeinschaft Ägyptens feiert Weihnachten am 7. Januar. Erleben Sie wunderschöne Mitternachtsmessen, traditionelle Fastengerichte und die herzliche Gastfreundschaft einer der ältesten christlichen Gemeinschaften der Welt.">
+                            يحتفل المجتمع القبطي المسيحي في مصر بعيد الميلاد في 7 يناير. استمتع بقداسات منتصف الليل الجميلة وأطعمة الصيام التقليدية والضيافة الدافئة لواحدة من أقدم المجتمعات المسيحية في العالم.
+                        </p>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-icon">🎪</div>
+                    <h3 data-en="Revolution Day" data-ar="عيد الثورة" data-pt="Dia da Revolução" data-fr="Jour de la Révolution" data-es="Día de la Revolución" data-de="Tag der Revolution">
+                            عيد الثورة
+                        </h3>
+                    <p class="event-date" data-en="23 July" data-ar="23 يوليو" data-pt="23 de Julho" data-es="23 de julio" data-fr="23 juillet" data-de="23. Juli">
+                            23 يوليو
+                        </p>
+                    <p data-en="National holiday commemorating the 1952 revolution. Expect patriotic displays, celebrations in public squares, and special cultural events. Many sites may have special opening hours or exhibitions."
+                       data-ar="عطلة وطنية تحيي ذكرى ثورة 1952. توقع عروضاً وطنية واحتفالات في الساحات العامة وفعاليات ثقافية خاصة. قد يكون للعديد من المواقع ساعات عمل خاصة أو معارض."
+                       data-pt="Feriado nacional comemorando a revolução de 1952. Espere manifestações patrióticas, celebrações em praças públicas e eventos culturais especiais. Muitos locais podem ter horários de abertura especiais ou exposições." data-es="Feriado nacional que conmemora la revolución de 1952. Espera manifestaciones patrióticas, celebraciones en plazas públicas y eventos culturales especiales. Muchos sitios pueden tener horarios de apertura especiales o exposiciones." data-fr="Jour férié national commémorant la révolution de 1952. Attendez-vous à des manifestations patriotiques, des célébrations sur les places publiques et des événements culturels spéciaux. De nombreux sites peuvent avoir des horaires d'ouverture spéciaux ou des expositions." data-de="Nationaler Feiertag zum Gedenken an die Revolution von 1952. Erwarten Sie patriotische Kundgebungen, Feiern auf öffentlichen Plätzen und besondere kulturelle Veranstaltungen. Viele Sehenswürdigkeiten können besondere Öffnungszeiten oder Ausstellungen haben.">
+                            عطلة وطنية تحيي ذكرى ثورة 1952. توقع عروضاً وطنية واحتفالات في الساحات العامة وفعاليات ثقافية خاصة. قد يكون للعديد من المواقع ساعات عمل خاصة أو معارض.
+                        </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-en="About" data-ar="عن الموقع" data-pt="Sobre" data-fr="À Propos" data-es="Acerca de" data-de="Über uns">
+                            عن الموقع
+                        </h3>
+                    <p data-en="Your trusted guide to exploring Luxor's magnificent ancient treasures. Curated with passion for history and culture."
+                       data-ar="دليلك الموثوق لاستكشاف كنوز الأقصر القديمة الرائعة. منسق بشغف للتاريخ والثقافة."
+                       data-pt="O seu guia de confiança para explorar os magníficos tesouros antigos de Luxor. Elaborado com paixão pela história e cultura." data-es="Tu guía de confianza para explorar los magníficos tesoros antiguos de Lúxor. Curado con pasión por la historia y la cultura." data-fr="Votre guide de confiance pour explorer les magnifiques trésors antiques de Louxor. Créé avec passion pour l'histoire et la culture." data-de="Ihr vertrauenswürdiger Führer zur Erkundung der prächtigen antiken Schätze von Luxor. Mit Leidenschaft für Geschichte und Kultur zusammengestellt.">
+                            دليلك الموثوق لاستكشاف كنوز الأقصر القديمة الرائعة. منسق بشغف للتاريخ والثقافة.
+                        </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 data-en="Contact Information" data-ar="معلومات الاتصال" data-pt="Informações de Contacto" data-fr="Informations de Contact" data-es="Información de Contacto" data-de="Kontaktinformationen">
+                            معلومات الاتصال
+                        </h3>
+                    <p><strong data-en="Founder:" data-ar="المؤسس:" data-pt="Fundador:" data-fr="Fondateur :" data-es="Fundador:" data-de="Gründer:">
+                            المؤسس:
+                        </strong> Mahmoud</p>
+                    <p>📞 <strong data-en="Phone:" data-ar="الهاتف:" data-pt="Telefone:" data-fr="Téléphone :" data-es="Teléfono:" data-de="Telefon:">
+                            الهاتف:
+                        </strong> +20 95 234 5678</p>
+                    <p>✉️ <strong data-en="Email:" data-ar="البريد الإلكتروني:" data-pt="Email:" data-fr="E-mail :" data-es="Correo electrónico:" data-de="E-Mail:">
+                            البريد الإلكتروني:
+                        </strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aec3cfc6c3c1dbca80c2dbd6c1dceecbc9d7dedadac1dbdcc7ddc380cdc1c3">[email&#160;protected]</a></p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 data-en="Quick Links" data-ar="روابط سريعة" data-pt="Links Rápidos" data-fr="Liens Rapides" data-es="Enlaces Rápidos" data-de="Schnelllinks">
+                            روابط سريعة
+                        </h3>
+                    <p data-en="Plan your perfect Egyptian adventure" data-ar="خطط لمغامرتك المصرية المثالية" data-pt="Planeie a sua aventura egípcia perfeita" data-es="Planifica tu aventura egipcia perfecta" data-fr="Planifiez votre aventure égyptienne parfaite" data-de="Planen Sie Ihr perfektes ägyptisches Abenteuer">
+                            خطط لمغامرتك المصرية المثالية
+                        </p>
+                    <p data-en="Experience history come alive" data-ar="اختبر التاريخ ينبض بالحياة" data-pt="Experimente a história ganhar vida" data-es="Experimenta la historia cobrando vida" data-fr="Découvrez l'histoire prendre vie" data-de="Erleben Sie Geschichte zum Leben erweckt">
+                            اختبر التاريخ ينبض بالحياة
+                        </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-en="© 2024 Discover Luxor - Founded by Mahmoud | Explore the wonders of ancient Egypt"
+                   data-ar="© 2024 اكتشف الأقصر - تأسيس محمود | استكشف عجائب مصر القديمة"
+                   data-pt="© 2024 Descubra Luxor - Fundado por Mahmoud | Explore as maravilhas do Egito Antigo" data-es="© 2024 Descubre Lúxor - Fundado por Mahmoud | Explora las maravillas del antiguo Egipto" data-fr="© 2024 Découvrez Louxor - Fondé par Mahmoud | Explorez les merveilles de l'Égypte ancienne" data-de="© 2024 Entdecken Sie Luxor - Gegründet von Mahmoud | Erkunden Sie die Wunder des alten Ägypten">
+                            © 2024 اكتشف الأقصر - تأسيس محمود | استكشف عجائب مصر القديمة
+                        </p>
+            </div>
+
+    <script>
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update all HTML elements with translations
+            const elements = document.querySelectorAll('[data-en]');
+            elements.forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (text) {
+                    element.textContent = text;
+                }
+            });
+
+            // Update SVG map labels
+            document.querySelectorAll('.map-label').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text) el.textContent = text;
+            });
+
+            // Update body class for RTL direction (Arabic only)
+            const isRTL = (lang === 'ar');
+            document.body.classList.toggle('arabic', isRTL);
+            document.documentElement.setAttribute('lang', lang);
+            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+
+            // Update dropdown selection
+            document.getElementById('language-select').value = lang;
+        }
+
+        // Set Arabic as default on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            setLanguage('en');
+        });
+    </script>
+</body>
+</html>
